@@ -849,7 +849,7 @@ max.imbal <- function(balance.table, col.name, thresh.col.name) {
     return(maxed)
     # return(balance.table[which.max(abs(balance.table[balance.table$Type != "Distance", col.name])), match(c(col.name, thresh.col.name), names(balance.table))])
 }
-balance.table <- function(C, weights, treat, continuous, binary, s.d.denom, m.threshold = NULL, v.threshold = NULL, ks.threshold = NULL, un = FALSE, disp.means = FALSE, disp.sds = FALSE, disp.v.ratio = FALSE, disp.ks = FALSE, 
+.balance.table <- function(C, weights, treat, continuous, binary, s.d.denom, m.threshold = NULL, v.threshold = NULL, ks.threshold = NULL, un = FALSE, disp.means = FALSE, disp.sds = FALSE, disp.v.ratio = FALSE, disp.ks = FALSE, 
                           s.weights = rep(1, length(treat)), abs = FALSE, no.adj = FALSE, types = NULL, pooled.sds = NULL, disp.pop = FALSE, pop.means = NULL, pop.sds = NULL, quick = TRUE) {
     #C=frame of variables, including distance; distance name (if any) stores in attr(C, "distance.name")
     
@@ -1246,7 +1246,7 @@ w.r <- function(x, y, w = NULL, s.weights = NULL) {
     
     w_ <- w*s.weights
     
-    r <- w.cov(x, y, w_) / (sqrt(w.v(x, s.weights) * w.v(y, s.weights)))
+    r <- w.cov(x, y, w_) / sqrt(w.v(x, s.weights) * w.v(y, s.weights))
     #r <- w.cov(x, y, w_) / (sqrt(var(x) * var(y)))
     
     return(r)
